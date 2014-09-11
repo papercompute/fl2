@@ -268,7 +268,7 @@ var COLOR_MAP = {
 128 : "blue",
 256 : "lightblue",
 512 : "magenta",
-1024 : "darkblue",
+1024 : "magenta",
 2048 : "magenta",
 }
 
@@ -323,24 +323,26 @@ for (var i=0;i<boxes.length;i++){
 */
 
 if (t.innerHTML!=""){
-
+  console.log(">>");
+var c=1;
+while(c>0){
+c=0;
 for (var i=0;i<boxes.length;i++){
  var x=boxes[i];
  if (x.innerHTML=="" || x==t){continue;}
  var xleft=parseInt(x.style.left.slice(0, -1)); var xtop=parseInt(x.style.top.slice(0, -1));
- if( Math.abs(xleft - eleft) <= 120 && Math.abs(xtop - etop) <= 120 ){
-  //console.log("x.innerHTML",x.innerHTML);
+ if( Math.abs(xleft - eleft) <= 100 && Math.abs(xtop - etop) <= 100 ){
   if(x.innerHTML == t.innerHTML){
    v=parseInt(t.innerHTML)*2; 
    t.innerHTML=v;
    if(COLOR_MAP[v]!="undefined"){ t.style.backgroundColor=COLOR_MAP[v]; }
    else{t.style.backgroundColor="gray";}
-//   x.gclear=1;
    x.innerHTML="";x.style.backgroundColor="lightgray";
-   //x.style.left=t.style.left;  x.style.top=t.style.top;
-   i=0;
-  }
- }
+   c++;
+  } // if
+ } // if
+} // for
+console.log(c);
 }
 
 
