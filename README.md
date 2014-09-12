@@ -1,4 +1,4 @@
-fl2
+[fl2](http://papercompute.github.io/fl2)
 ===
 
-2048 like puzzle game with modified gameplay
+fl2 numbers puzzle game inspired by 2048.
