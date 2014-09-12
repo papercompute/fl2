@@ -10,13 +10,21 @@
 
 <style>
 
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #faf8ef;
+  color: #776e65;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 18px; }
+
 .zeropoint{
  position: absolute;
  left: 44.6%;
  top: 44.5%;
  width:12.5%;
  height:12.5%;
- 
+ cursor: pointer; 
 /* transform: translate(-50%, -50%);*/
  background-color: none;
 /* z-index:1000;*/
@@ -81,7 +89,8 @@
  height:97%;
  background: green;
  border-radius: 5px;
- font-size:5em;
+ font-size:3em;
+ line-height:1.9em;
  text-align:center;
 }
 
@@ -259,9 +268,10 @@ const DEFSCALE = 0.125
 var GSCALE = DEFSCALE;
 
 var COLOR_MAP = {
-2 : "lightgray",
-4 : "orange",
-8 : "gold",
+0 : "rgba(238, 228, 218, 0.35)",
+2 : "#eee4da",
+4 : "#ede0c8",
+8 : "#f2b179",
 16 : "lightgreen",
 32 : "yellow",
 64 : "red",
@@ -284,6 +294,15 @@ return true;
 }
 
 function updateColor(e){
+   if(e.innerHTML==""){ v=0;}
+   else{v=parseInt(e.innerHTML);}
+   console.log("updateColor",v);
+   if(COLOR_MAP[v]!="undefined"){ e.style.backgroundColor=COLOR_MAP[v]; }
+   else{e.style.backgroundColor=COLOR_MAP[0];}
+}
+
+/*
+function updateColor(e){
 //console.log("updateColor",e.style.backgroundColor);
 var ci=COLORS.indexOf(e.style.backgroundColor);
 //console.log("ci",ci,COLORS); 
@@ -296,6 +315,7 @@ else{
 }
 
 }
+*/
 
 function isHide()
 {
@@ -335,9 +355,13 @@ for (var i=0;i<boxes.length;i++){
   if(x.innerHTML == t.innerHTML){
    v=parseInt(t.innerHTML)*2; 
    t.innerHTML=v;
+   updateColor(t);
+/*
    if(COLOR_MAP[v]!="undefined"){ t.style.backgroundColor=COLOR_MAP[v]; }
    else{t.style.backgroundColor="gray";}
+*/
    x.innerHTML="";x.style.backgroundColor="lightgray";
+   updateColor(x);
    c++;
   } // if
  } // if

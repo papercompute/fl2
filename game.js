@@ -35,7 +35,8 @@ if(o.length==0)break;
 var j=Math.round(Math.random()*(o.length-1));
 var i=o[j];
 boxes[i].innerHTML="2";
-boxes[i].style.backgroundColor="gray";
+//boxes[i].style.backgroundColor="gray";
+updateColor(boxes[i]);
 o.splice(j,1);
 }
 
@@ -48,7 +49,7 @@ if(game.l[l].b.length>1){return;}
 
 //game.l[l].b.push([0,0,"red"]);
 
-var color="lightgrey";
+var color="rgba(238, 228, 218, 0.35)";
 for(var i=-2;i<2;i+=1){
  for(var j=-2;j<2;j+=1){
   this.b.push([i,j,color]);
@@ -79,7 +80,8 @@ var j=Math.round(Math.random()*(o.length-1));
 var i=o[j];
 //console.log(j,i);
 boxes[i].innerHTML="2";
-boxes[i].style.backgroundColor="gray";
+//boxes[i].style.backgroundColor="gray";
+updateColor(boxes[i]);
 o.splice(j,1);
 }
 
@@ -87,7 +89,8 @@ for(var c=0;c<2;c++){
 var j=Math.round(Math.random()*(o.length-1));
 var i=o[j];
 boxes[i].innerHTML="4";
-boxes[i].style.backgroundColor="orange";
+//boxes[i].style.backgroundColor="orange";
+updateColor(boxes[i]);
 o.splice(j,1);
 }
 
@@ -95,7 +98,8 @@ for(var c=0;c<2;c++){
 var j=Math.round(Math.random()*(o.length-1));
 var i=o[j];
 boxes[i].innerHTML="8";
-boxes[i].style.backgroundColor="gold";
+//boxes[i].style.backgroundColor="gold";
+updateColor(boxes[i]);
 o.splice(j,1);
 }
 
