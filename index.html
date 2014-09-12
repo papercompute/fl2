@@ -89,10 +89,30 @@ html, body {
  height:97%;
  background: green;
  border-radius: 5px;
- font-size:3em;
- line-height:1.9em;
+ font-weight: bold;
+ font-size:5em;
+/* line-height:100%;*/
  text-align:center;
+ font-color:lightgray;
 }
+
+/*
+@media only screen and (max-width : 320px) {
+.gamebox{ font-size: 1.8em;  line-height:1.6em;}
+}
+
+@media only screen and (min-width : 321px) and (max-width : 360px) {
+.gamebox{ font-size: 2.2em;  line-height:1.8em;}
+}
+
+@media only screen and (min-width : 361px) and (max-width : 420px) {
+.gamebox{ font-size: 2.4em;  line-height:1.9em;}
+}
+
+@media only screen and (min-width : 421px) and (max-width : 480px) {
+.gamebox{ font-size: 2.5em;  line-height:2em;}
+}
+*/
 
 .gamebox-fx{
  transition: left 1.3s, top 1.3s;
@@ -224,7 +244,7 @@ html, body {
 
     <p>
 
-  <a href="https://twitter.com/share" class="twitter-share-button" data-text="Check out #fliplogic2 a #2048game like #puzzle #game" data-via="papercompute" data-url="http://papercompute.github.com/fliplogic2" data-counturl="http://papercompute.github.io/fliplogic2/">Tweet</a>
+  <a href="https://twitter.com/share" class="twitter-share-button" data-text="Check out #fliplogic2 a #2048game like #puzzle #game" data-via="papercompute" data-url="http://papercompute.github.com/fliplogic2" data-counturl="http://papercompute.github.io/fl2/">Tweet</a>
 
       <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 
@@ -272,14 +292,15 @@ var COLOR_MAP = {
 2 : "#eee4da",
 4 : "#ede0c8",
 8 : "#f2b179",
-16 : "lightgreen",
-32 : "yellow",
-64 : "red",
+16 : "#f59563",
+32 : "#f67c5f",
+64 : "#f65e3b",
 128 : "blue",
 256 : "lightblue",
 512 : "magenta",
-1024 : "magenta",
-2048 : "magenta",
+1024 : "gold",
+2048 : "darkred",
+4096 : "red",
 }
 
 function checkBoxesColor(){
@@ -293,12 +314,47 @@ for (var i=0;i<boxes.length;i++){
 return true;
 }
 
+
+function updateFnt(e){
+var box=document.querySelector(".zeropoint");
+var sz=parseInt(box.style.height.slice(0,-2));
+
+
+
+if (e.innerHTML.length<=1){
+ e.style.fontSize=sz+"px"; e.style.lineHeight=sz+"px";
+}
+else if (e.innerHTML.length<=2){
+ e.style.fontSize=sz/1.5+"px"; e.style.lineHeight=sz+"px";
+}
+else if (e.innerHTML.length==3){
+ e.style.fontSize=sz/1.75+"px"; e.style.lineHeight=sz+"px";
+}
+else if (e.innerHTML.length==4){
+ e.style.fontSize=sz/2.5+"px"; e.style.lineHeight=sz+"px";
+}
+else if (e.innerHTML.length>=5){
+ e.style.fontSize=sz/4+"px"; e.style.lineHeight=sz+"px";
+}
+
+var v=parseInt(e.innerHTML);
+if(v>=0 && v<16){e.style.color="gray"}
+else if(v>=16 && v<128){e.style.color="lightgray"}
+else if(v>=128){e.style.color="white"}
+
+
+}
+
 function updateColor(e){
-   if(e.innerHTML==""){ v=0;}
-   else{v=parseInt(e.innerHTML);}
+   var v;
+   if(e.innerHTML==""){ v=0; }   
+   else{
+    v=parseInt(e.innerHTML); updateFnt(e);
+   }
    console.log("updateColor",v);
    if(COLOR_MAP[v]!="undefined"){ e.style.backgroundColor=COLOR_MAP[v]; }
    else{e.style.backgroundColor=COLOR_MAP[0];}
+
 }
 
 /*
@@ -407,7 +463,7 @@ if(typeof lcb!=="undefined"){
 //if(typeof e.target.gcb!=="undefined"){
 // e.target.gcb.call(game.l[game.i],e.target);
 //}
-
+/*
 if(checkBoxesColor()){
 console.log("Yooohoooooooooooooooooo!!!");
 
@@ -423,17 +479,8 @@ ish1.innerHTML='<p>Level '+game.i+' complite <br> in '+(game.cc+1)+' clicks!</p>
 
 is.style.visibility="visible";
 
-/*
-setTimeout(function() {
- var is=document.querySelector(".infoshow");
- is.style.visibility="hidden";
-// levelUpdate( (game.i+1) % game.l.length ); 
-showLevels();
-}, 10000); // 10s
-*/
-
 } // if
-
+*/
 game.cc=game.cc+1;
 document.getElementById("idLevel").innerHTML='L'+game.i+'('+game.cc+')';
 }
@@ -585,6 +632,12 @@ var nh=Math.round(wm*p);if(nh>maxh){nh=maxh;}
 //console.log(nw);console.log(nh);
 box.style.width=nw+"px";box.style.height=nh+"px";
 box.style.left=Math.round((ww)/2)+"px";box.style.top=Math.round((wh)/2)+"px";
+//box.style.lineHeight=box.style.height;
+
+var boxes=document.querySelectorAll(".gamebox");
+for(var i=0;i<boxes.length;i++){
+ updateFnt(boxes[i]);
+}
 }
 
 window.addEventListener("load", function () {
