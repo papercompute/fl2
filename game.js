@@ -75,7 +75,7 @@ boxes[b].style.backgroundColor="gray";
 var o=[];
 for(var i=0;i<boxes.length;i++){o.push(i);}
 //console.log(o);
-for(var c=0;c<2;c++){
+for(var c=0;c<4;c++){
 var j=Math.round(Math.random()*(o.length-1));
 var i=o[j];
 //console.log(j,i);
@@ -102,8 +102,28 @@ boxes[i].innerHTML="8";
 updateColor(boxes[i]);
 o.splice(j,1);
 }
+
+for(var c=0;c<1;c++){
+var j=Math.round(Math.random()*(o.length-1));
+var i=o[j];
+boxes[i].innerHTML="16";
+//boxes[i].style.backgroundColor="gold";
+updateColor(boxes[i]);
+o.splice(j,1);
+}
+
 /*
-for(var c=0;c<2;c++){
+for(var c=0;c<1;c++){
+var j=Math.round(Math.random()*(o.length-1));
+var i=o[j];
+boxes[i].innerHTML="32";
+//boxes[i].style.backgroundColor="gold";
+updateColor(boxes[i]);
+o.splice(j,1);
+}
+
+
+for(var c=0;c<1;c++){
 var j=Math.round(Math.random()*(o.length-1));
 var i=o[j];
 boxes[i].innerHTML="64";
@@ -112,7 +132,8 @@ updateColor(boxes[i]);
 o.splice(j,1);
 }
 
-for(var c=0;c<2;c++){
+
+for(var c=0;c<1;c++){
 var j=Math.round(Math.random()*(o.length-1));
 var i=o[j];
 boxes[i].innerHTML="512";
@@ -121,7 +142,7 @@ updateColor(boxes[i]);
 o.splice(j,1);
 }
 
-for(var c=0;c<2;c++){
+for(var c=0;c<1;c++){
 var j=Math.round(Math.random()*(o.length-1));
 var i=o[j];
 boxes[i].innerHTML="1024";
