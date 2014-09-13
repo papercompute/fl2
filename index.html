@@ -334,6 +334,18 @@ for (var i=0;i<boxes.length;i++){
 return true;
 }
 
+function check2048()
+{
+var boxes=document.querySelectorAll(".gamebox");
+for (var i=0;i<boxes.length;i++){
+ var x=boxes[i];
+ if( x.innerHTML == "4096" ) {return true;}
+}
+return false;
+
+}
+
+
 
 function updateFnt(e){
 var box=document.querySelector(".zeropoint");
@@ -392,6 +404,7 @@ else{
 
 }
 */
+
 
 function isHide()
 {
@@ -483,24 +496,24 @@ if(typeof lcb!=="undefined"){
 //if(typeof e.target.gcb!=="undefined"){
 // e.target.gcb.call(game.l[game.i],e.target);
 //}
-/*
-if(checkBoxesColor()){
+
+if(check2048()){
 console.log("Yooohoooooooooooooooooo!!!");
 
 var is=document.querySelector(".infoshow");
 var ish1=document.querySelector(".infoshow h1");
 var shareText=
-ish1.innerHTML='<p>Level '+game.i+' complite <br> in '+(game.cc+1)+' clicks!</p>'+
+ish1.innerHTML='<p>Game complite <br> in '+(game.cc+1)+' clicks!</p>'+
                '<p><a href="#" onclick="javascript:levelUpdate( (game.i ));isHide();return false;">Restart</a></p>'+
-               '<p><a href="#" onclick="javascript:levelUpdateHash( (game.i+1) % game.l.length );isHide();return false;">Next level</a></p>'+
-               '<p><a href="#" onclick="javascript:showLevels();window.scrollTo(0,0);isHide();return false;">Choose level</a></p>'+
-               '<p><a href="http://twitter.com/share?url='+escape('http://papercompute.github.io/fliplogic')+'&text='+escape('I just complite #fliplogic #l'+game.i+' in '+(game.cc+1)+' clicks! #indie #indiedev #gamedev #game')+'"'+  'onclick="javascript:window.open(this.href);return false;">Tweet</a></p>'+
-               '<p><a href="https://www.facebook.com/sharer.php?&u=http%3A%2F%2Fpapercompute.github.io%2Ffliplogic%2F">Share on FB</a></p>';
+//               '<p><a href="#" onclick="javascript:levelUpdateHash( (game.i+1) % game.l.length );isHide();return false;">Next level</a></p>'+
+//               '<p><a href="#" onclick="javascript:showLevels();window.scrollTo(0,0);isHide();return false;">Choose level</a></p>'+
+               '<p><a href="http://twitter.com/share?url='+escape('http://papercompute.github.io/fl2')+'&text='+escape('I just complite #fliplogic2 puzzle game in '+(game.cc+1)+' clicks! #indie #indiedev #gamedev #game')+'"'+  'onclick="javascript:window.open(this.href);return false;">Tweet</a></p>'+
+               '<p><a href="https://www.facebook.com/sharer.php?&u=http%3A%2F%2Fpapercompute.github.io%2Ffl2%2F">Share on FB</a></p>';
 
 is.style.visibility="visible";
 
 } // if
-*/
+
 game.cc=game.cc+1;
 document.getElementById("idLevel").innerHTML='L'+game.i+'('+game.cc+')';
 }
