@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="utf-8">
+ <title>fliplogic2</title>
+
+ <meta name="HandheldFriendly" content="True">
+ <meta name="MobileOptimized" content="320">
+ <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0, maximum-scale=1, user-scalable=no, minimal-ui">
+
+<style>
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #faf8ef;
+  color: #776e65;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 18px; }
+
+.zeropoint{
+ position: absolute;
+ left: 44.6%;
+ top: 44.5%;
+ width:12.5%;
+ height:12.5%;
+ cursor: pointer; 
+/* transform: translate(-50%, -50%);*/
+ background-color: none;
+/* z-index:1000;*/
+}
+
+
+.infobox{
+ position: absolute;
+ margin: auto;
+ width: 70%;
+ top: 95%; left: 0; bottom: 0; right: 0;
+/* transform: translate(-50%, -50%);*/
+ opacity: 0.5;
+ text-align:center;
+}
+
+.infobox h1{
+ font-size: 2em;
+}
+
+
+.infoshow{
+ position: fixed;
+ width: 100%;
+ height: 100%;
+/* overflow: auto;*/
+ top: 0; left: 0; bottom: 0; right: 0; 
+ z-index: 1000;
+ opacity: 0.75;
+ background-color: gray;
+ font-size: 1.5em;
+}
+
+.infoshow h1{
+ font-size: 1.5em;
+}
+
+@media only screen and (max-width : 320px) {
+.infoshow{ font-size: 1.1em;}
+.infoshow h1{ font-size: 1.1em;}
+}
+
+@media only screen and (min-width : 321px) and (max-width : 480px) {
+.infoshow{ font-size: 1.3em;}
+.infoshow h1{ font-size: 1.3em;}
+}
+
+
+.infoshow-fx{
+ transition: font-size 1.3s;
+ -moz-transition: font-size 1.3s;
+ -webkit-transition: font-size 1.3s;
+ -ms-transition: font-size 1.3s;
+ -o-transition: font-size 1.3s;
+}
+
+.gamebox{
+ position: absolute;
+ top: 0%;
+ left: 0%;
+ width:97%;
+ height:97%;
+ background: green;
+ border-radius: 5px;
+ font-weight: bold;
+ font-size:5em;
+/* line-height:100%;*/
+ text-align:center;
+ font-color:lightgray;
+}
+
+/*
+@media only screen and (max-width : 320px) {
+.gamebox{ font-size: 1.8em;  line-height:1.6em;}
+}
+
+@media only screen and (min-width : 321px) and (max-width : 360px) {
+.gamebox{ font-size: 2.2em;  line-height:1.8em;}
+}
+
+@media only screen and (min-width : 361px) and (max-width : 420px) {
+.gamebox{ font-size: 2.4em;  line-height:1.9em;}
+}
+
+@media only screen and (min-width : 421px) and (max-width : 480px) {
+.gamebox{ font-size: 2.5em;  line-height:2em;}
+}
+*/
+
+.gamebox-fx{
+ transition: left 1.3s, top 1.3s;
+ -moz-transition: left 1.3s, top 1.3s;
+ -webkit-transition: left 1.3s, top 1.3s;
+ -ms-transition: left 1.3s, top 1.3s;
+ -o-transition: left 1.3s, top 1.3s;
+}
+
+
+.header{
+ position: absolute;
+ left: 0px;
+ top: 0px;
+ width:100%;
+ /*opacity: 0.5;*/
+ font-size: 2em;
+}
+
+.levels{
+ position: absolute;
+ margin: 15% auto;
+ width: 70%;
+ top: 0; left: 0; bottom: 0; right: 0; 
+
+ text-align: center;
+ font-size: 2em;
+ z-index: 100;
+}
+
+.levels a{
+ font-size: 2em;
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width : 320px) {
+.header{ font-size: 1em;}
+.levels a{ font-size: 1em;}
+}
+
+
+@media only screen and (min-width : 321px) and (max-width : 480px) {
+.header{ font-size: 1.2em;}
+.levels a{ font-size: 1.2em;}
+}
+
+
+.fliplogic{
+ position: absolute;
+ margin: auto;
+ top: 0; left: 0; bottom: 0; right: 0; 
+/* opacity: 0.5;*/
+ text-align: center;
+ width:100%;
+ height:30%;
+ font-size:5em;
+ font-family: Geneva, Arial, Helvetica, sans-serif;
+}
+
+.fliplogic h1{
+ font-size: 0.5em;
+ font-color:lightgray;
+}
+
+.fliplogic h2{
+ font-size: 1em;
+ font-color:lightgray;
+}
+
+@media only screen and (max-width : 320px) {
+.fliplogic{  font-size:1.8em; }
+}
+
+@media only screen and (min-width : 321px) and (max-width : 480px) {
+.fliplogic{  font-size:2.4em; }
+}
+
+@media only screen and (min-width : 481px) and (max-width : 640px) {
+.fliplogic{  font-size:3em; }
+}
+
+
+
+#idReset{
+ float:left;
+ padding:.25em;
+ text-decoration: none;
+}
+
+#idLevel{
+ float:right;
+ padding:.25em;
+ text-decoration: none;
+}
+
+</style>
+
+</head>
+
+<!--
+<body ondragstart="return false;" ondrop="return false;">
+-->
+<body>
+
+  <div class="fliplogic" style="visibility:visible;">
+    <bold>
+     <span style="color:blue;">F</span>
+      <span style="color:red;">L</span>
+   <span style="color:orange;">2</span>
+     <br>
+    </bold>
+    <h2 style="color:lightgray;">=D E M O=</h2>
+    <h1 style="color:lightgray;">loading</h1>
+  </div>
+  <div class="header">
+   <a id="idReset" href="#">R</a>
+   <a id="idLevel" href="#">L</a>
+  </div>
+  <div class="infobox">
+
+    <p> <strong>How to play</strong>: <br>Click boxes to double numbers. <br>One click doubles same numbers of close neigbours.</p>
+    <p> <strong>Objective</strong>: <br>Make 2048 box.  </p>
+    <p> <strong>R</strong> (left top) <a href="javascript:levelUpdate( game.i );">reset level</a>.</p> 
+    <p> <strong>L</strong> (right top) <a href="javascript:showLevels();window.scrollTo(0,0);">choose level</a>.</p>
+    <p> <strong>Tip</strong>: <br>Keep bigger numbers at center.  </p>
+    <p>
+    <a href="https://github.com/papercompute/fl2" style="font-size:2em;"> <strong><span style="color:blue;">f</span><span style="color:red;">l</span><span style="color:orange;">i</span><span style="color:gray;">p</span><span style="color:black;">l</span><span style="color:blue;">o</span><span style="color:green;">g</span><span style="color:magenta;">i</span><span style="color:blue;">c</span><span style="color:lightblue;">2</span></strong> </a>
+    </p>
+
+    <p>
+
+  <a href="https://twitter.com/share" class="twitter-share-button" data-text="Check out #fliplogic2 a #2048game like #puzzle #game" data-via="papercompute" data-url="http://papercompute.github.com/fl2" data-counturl="http://papercompute.github.io/fl2/">Tweet</a>
+
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+
+    </p>
+
+    <p>
+      Created by <a href="mailto:papercompute@gmail.com?subject=fliplogic">papercompute</a><br>      
+      Inspired by <a href="http://gabrielecirulli.github.io/2048/">2048</a> and other puzzle games.<br> 
+      <br> <br> 
+    </p>
+
+  </div>
+
+  <div class="infoshow" style="visibility:hidden;">
+    <h1 style="text-align: center;"></h1>
+  </div>
+
+  <div class="levels" style="visibility:hidden;">
+    <strong>
+     <span style="color:blue;">l</span>
+      <span style="color:red;">e</span>
+   <span style="color:orange;">v</span>
+     <span style="color:gray;">e</span>
+    <span style="color:green;">l</span>
+     <span style="color:blue;">s</span>
+     <br>
+    </strong>
+  </div>
+  <div class="zeropoint"></div>
+
+
+
+<script src="game.js"></script>
+
+<script>
+
+var COLORS = ["orange","gray","blue"];
+const IMM_COLOR = "black";
+const DEFSCALE = 0.125
+var GSCALE = DEFSCALE;
+
+var COLOR_MAP = {
+0 : "rgba(238, 228, 218, 0.35)",
+2 : "#eee4da",
+4 : "#ede0c8",
+8 : "#f2b179",
+16 : "#f59563",
+32 : "#f67c5f",
+64 : "#f65e3b",
+128 : "#edcf72",
+256 : "#BCC6CC",
+512 : "#89C35C",
+1024 : "#FBBBB9",
+2048 : "#CD7F32",
+4096 : "#E77471",
+}
+
+function checkBoxesColor(){
+var boxes=document.querySelectorAll(".gamebox");
+var color="";
+for (var i=0;i<boxes.length;i++){
+ if( boxes[i].style.backgroundColor == IMM_COLOR ) {continue;}
+ if( color == ""){color=boxes[i].style.backgroundColor;continue;}
+ if( boxes[i].style.backgroundColor != color ) {return false;}
+}
+return true;
+}
+
+
+function updateFnt(e){
+var box=document.querySelector(".zeropoint");
+var sz=parseInt(box.style.height.slice(0,-2));
+
+
+
+if (e.innerHTML.length<=1){
+ e.style.fontSize=sz+"px"; e.style.lineHeight=sz+"px";
+}
+else if (e.innerHTML.length<=2){
+ e.style.fontSize=sz/1.5+"px"; e.style.lineHeight=sz+"px";
+}
+else if (e.innerHTML.length==3){
+ e.style.fontSize=sz/1.75+"px"; e.style.lineHeight=sz+"px";
+}
+else if (e.innerHTML.length==4){
+ e.style.fontSize=sz/2.5+"px"; e.style.lineHeight=sz+"px";
+}
+else if (e.innerHTML.length>=5){
+ e.style.fontSize=sz/4+"px"; e.style.lineHeight=sz+"px";
+}
+
+var v=parseInt(e.innerHTML);
+if(v>=0 && v<16){e.style.color="gray"}
+else if(v>=16 && v<128){e.style.color="lightgray"}
+else if(v>=128){e.style.color="white"}
+
+
+}
+
+function updateColor(e){
+   var v;
+   if(e.innerHTML==""){ v=0; }   
+   else{
+    v=parseInt(e.innerHTML); updateFnt(e);
+   }
+   console.log("updateColor",v);
+   if(COLOR_MAP[v]!="undefined"){ e.style.backgroundColor=COLOR_MAP[v]; }
+   else{e.style.backgroundColor=COLOR_MAP[0];}
+
+}
+
+/*
+function updateColor(e){
+//console.log("updateColor",e.style.backgroundColor);
+var ci=COLORS.indexOf(e.style.backgroundColor);
+//console.log("ci",ci,COLORS); 
+if(ci>=0){
+ ci=(ci+1) % COLORS.length; 
+ e.style.backgroundColor = COLORS[ci];
+}
+else{
+ e.style.backgroundColor = COLORS[0];
+}
+
+}
+*/
+
+function isHide()
+{
+var is=document.querySelector(".infoshow");
+is.style.visibility="hidden";
+}
+
+function onclick(e){
+
+var eleft=parseInt(e.target.style.left.slice(0, -1));
+var etop=parseInt(e.target.style.top.slice(0, -1));
+var t=e.target;
+
+var boxes=document.querySelectorAll(".gamebox");
+/*
+for (var i=0;i<boxes.length;i++){
+ var x=boxes[i];
+ if(x.style.backgroundColor == IMM_COLOR){continue;}
+ var xleft=parseInt(x.style.left.slice(0, -1));
+ var xtop=parseInt(x.style.top.slice(0, -1));
+ if( Math.abs(xleft - eleft) <= 100 && Math.abs(xtop - etop) <= 100 ){
+ updateColor(x);
+ }
+}
+*/
+
+if (t.innerHTML!=""){
+  console.log(">>");
+var c=1;
+while(c>0){
+c=0;
+for (var i=0;i<boxes.length;i++){
+ var x=boxes[i];
+ if (x.innerHTML=="" || x==t){continue;}
+ var xleft=parseInt(x.style.left.slice(0, -1)); var xtop=parseInt(x.style.top.slice(0, -1));
+ if( Math.abs(xleft - eleft) <= 100 && Math.abs(xtop - etop) <= 100 ){
+  if(x.innerHTML == t.innerHTML){
+   v=parseInt(t.innerHTML)*2; 
+   t.innerHTML=v;
+   updateColor(t);
+/*
+   if(COLOR_MAP[v]!="undefined"){ t.style.backgroundColor=COLOR_MAP[v]; }
+   else{t.style.backgroundColor="gray";}
+*/
+   x.innerHTML="";x.style.backgroundColor="lightgray";
+   updateColor(x);
+   c++;
+  } // if
+ } // if
+} // for
+console.log(c);
+}
+
+
+
+/*
+setTimeout(function() {
+var l=game.i;
+for (var i=0;i<boxes.length;i++){
+ var gi=boxes[i].gindex;
+ if(boxes[i].gclear==1){
+  boxes[i].innerHTML="";boxes[i].style.backgroundColor="lightgray";
+  boxes[i].gclear=0;
+ }
+ boxes[i].style.left=(game.l[l].b[gi][0]*100)+'%'; 
+ boxes[i].style.top=(game.l[l].b[gi][1]*100)+'%';
+}
+
+var lcb = game.l[game.i].cb;
+
+if(typeof lcb!=="undefined"){
+  lcb.call(game.l[game.i],e);
+}
+
+
+}, 500);
+*/
+
+}
+
+
+var lcb = game.l[game.i].cb;
+
+if(typeof lcb!=="undefined"){
+  lcb.call(game.l[game.i],e);
+}
+
+
+//if(typeof e.target.gcb!=="undefined"){
+// e.target.gcb.call(game.l[game.i],e.target);
+//}
+/*
+if(checkBoxesColor()){
+console.log("Yooohoooooooooooooooooo!!!");
+
+var is=document.querySelector(".infoshow");
+var ish1=document.querySelector(".infoshow h1");
+var shareText=
+ish1.innerHTML='<p>Level '+game.i+' complite <br> in '+(game.cc+1)+' clicks!</p>'+
+               '<p><a href="#" onclick="javascript:levelUpdate( (game.i ));isHide();return false;">Restart</a></p>'+
+               '<p><a href="#" onclick="javascript:levelUpdateHash( (game.i+1) % game.l.length );isHide();return false;">Next level</a></p>'+
+               '<p><a href="#" onclick="javascript:showLevels();window.scrollTo(0,0);isHide();return false;">Choose level</a></p>'+
+               '<p><a href="http://twitter.com/share?url='+escape('http://papercompute.github.io/fliplogic')+'&text='+escape('I just complite #fliplogic #l'+game.i+' in '+(game.cc+1)+' clicks! #indie #indiedev #gamedev #game')+'"'+  'onclick="javascript:window.open(this.href);return false;">Tweet</a></p>'+
+               '<p><a href="https://www.facebook.com/sharer.php?&u=http%3A%2F%2Fpapercompute.github.io%2Ffliplogic%2F">Share on FB</a></p>';
+
+is.style.visibility="visible";
+
+} // if
+*/
+game.cc=game.cc+1;
+document.getElementById("idLevel").innerHTML='L'+game.i+'('+game.cc+')';
+}
+
+
+
+function levelUpdate(l)
+{
+
+if(l>=game.l.length || l<0){ console.log("wrong level",l);return;}
+
+var zp=document.querySelector(".zeropoint");
+
+while (zp.firstChild) {  zp.removeChild(zp.firstChild); }
+
+
+COLORS.length = 0;
+
+if(typeof game.l[l].gen!=="undefined"){
+game.l[l].gen.call(game.l[l],l);
+}
+
+for(var i=0;i<game.l[l].b.length;i++){
+ var gb = document.createElement("div");
+ gb.setAttribute('class', 'gamebox gamebox-fx');
+ gb.gindex=i;
+// gb.gcb=game.l[l].b[i][3];
+ var color=game.l[l].b[i][2] || "black";
+// gb.setAttribute('style', 'background:'+color+';');
+ gb.setAttribute('style','left:'+(game.l[l].b[i][0]*100)+'%; top:'+(game.l[l].b[i][1]*100)+'%; background:'+game.l[l].b[i][2]+';');
+ zp.appendChild(gb);
+}
+
+if(typeof game.l[l].postgen!=="undefined"){
+console.log("postgen");
+game.l[l].postgen.call(game.l[l],l);
+}
+
+
+var scale=DEFSCALE;
+if(typeof game.l[l].scale!=="undefined"){ scale=game.l[l].scale;}
+GSCALE=scale;
+resize();
+
+
+var boxes=document.querySelectorAll(".gamebox");
+
+for (var j=0;j<boxes.length;j++){
+  boxes[j].onclick=onclick;  
+//  console.log(boxes[j].style.backgroundColor);
+//  var color=boxes[j].style.backgroundColor;
+//   if( COLORS.indexOf(color) < 0 && color!="black") {
+//  COLORS.push(color);
+// }
+}
+
+//console.log("COLORS",COLORS);
+
+/*
+setTimeout(function() {
+
+var boxes=document.querySelectorAll(".gamebox");
+for (var j=0;j<boxes.length;j++){
+  var i=boxes[j].gindex;
+  boxes[j].setAttribute('style','left:'+(game.l[l].b[i][0]*100)+'%; top:'+(game.l[l].b[i][1]*100)+'%; background:'+game.l[l].b[i][2]+';');
+}
+
+
+}, 50);
+*/
+
+game.i=l;
+game.cc=0;
+
+//var idLevel=document.getElementById("idLevel");
+//idLevel.innerHTML='L'+l;
+document.getElementById("idLevel").innerHTML='L'+l;
+
+}
+
+
+
+
+function infoShow(cb)
+{
+
+var is=document.querySelector(".infoshow");
+is.style.visibility="visible";
+
+setTimeout(function() {
+
+var is=document.querySelector(".infoshow");
+is.style.visibility="hidden";
+cb(game.i);
+}, 2250);
+
+}
+
+
+function showLevels(){
+//console.log("showLevels");
+var zp=document.querySelector(".zeropoint");
+while (zp.firstChild) {  zp.removeChild(zp.firstChild); }
+
+var lvls=document.querySelector(".levels");
+//console.log(lvls);
+lvls.style.visibility="visible";
+}
+
+
+function hideLevels(){
+var lvls=document.querySelector(".levels");
+lvls.style.visibility="hidden";
+}
+
+
+
+function levelUpdateHash(l)
+{
+  if(l>=0 && l<game.l.length){ 
+   levelUpdate( l );
+   game.lock=1;
+   location.hash="#l"+l;
+   setTimeout(function() {game.lock=0;}, 50);   
+  }
+}
+
+
+(function(){}());
+
+function resize(){
+// console.log('resize!')
+
+var box=document.querySelector(".zeropoint");
+
+
+var ww=window.width || window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+var wh=window.height || window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight; 
+
+
+var wm=Math.min(ww,wh);
+var p=GSCALE || 0.125;
+const maxw=110;
+const maxh=110;
+//console.log(ww);
+//console.log(wh);
+var nw=Math.round(wm*p);if(nw>maxw){nw=maxw;}
+var nh=Math.round(wm*p);if(nh>maxh){nh=maxh;}
+//console.log(nw);console.log(nh);
+box.style.width=nw+"px";box.style.height=nh+"px";
+box.style.left=Math.round((ww)/2)+"px";box.style.top=Math.round((wh)/2)+"px";
+//box.style.lineHeight=box.style.height;
+
+var boxes=document.querySelectorAll(".gamebox");
+for(var i=0;i<boxes.length;i++){
+ updateFnt(boxes[i]);
+}
+}
+
+window.addEventListener("load", function () {
+//console.log("load");
+
+var idReset=document.getElementById("idReset");
+idReset.onclick=function(){
+//console.log("idReset.onclick");
+levelUpdate( game.i );
+};
+
+var idLevel=document.getElementById("idLevel");
+idLevel.onclick=function(){
+//console.log("idLevel.onclick");
+showLevels();
+};
+
+
+var levels=document.querySelector(".levels");
+for(var i=0;i<game.l.length;i++){
+ var e = document.createElement("a");
+ e.setAttribute('href', '#l'+i);
+ e.innerHTML=" "+i;
+ e.style.textDecoration="none";
+
+ e.onclick=function(e){
+  e.preventDefault(); 
+//  console.log("onclick",e.target);
+  var l=parseInt(e.target.innerHTML);
+  if(l>=0 && l<game.l.length){ 
+   levelUpdate( l );
+   game.lock=1;
+   location.hash="#l"+l;
+   setTimeout(function() {game.lock=0;}, 50);   
+  }
+  hideLevels();  
+ }
+
+ levels.appendChild(e);
+}
+resize();
+//infoShow(levelUpdate);
+
+var fl=document.querySelector(".fliplogic");
+fl.style.visibility="hidden";
+var l=game.i;
+
+//console.log("location.hash ",location.hash.slice(1,2));
+if(location.hash.slice(1,2) == "l" || location.hash.slice(1,2) == "L"){
+ try{
+  var h=parseInt(location.hash.slice(2));
+//  console.log("h",h);
+  if(h>=0 && h<game.l.length){l=h;}
+  }catch(e){}
+}
+
+//console.log("l",l);
+levelUpdate(l);
+});
+
+window.addEventListener("resize", function(){
+ resize();
+}, true);
+
+if (!("onhashchange" in window)) {
+  console.log("The browser doesn't support the hashchange event!");
+}
+
+window.addEventListener("hashchange", function(){
+if (game.lock) return;
+// console.log("hashchange",location.hash);
+if(location.hash.slice(1,2) == "l" || location.hash.slice(1,2) == "L"){
+  var l=parseInt(location.hash.slice(2));
+  if(l>=0 && l<game.l.length){
+   levelUpdate(l);
+  }
+ }
+
+}, false);
+
+</script>
+
+
+
+
+
+</body>
+</html>
+
+
+
+
