@@ -24,19 +24,31 @@ l : [
 { // L0
 scale:0.2,
 cb:function(e){
-//console.log("L0 cb",e.target);
+
 var boxes=document.querySelectorAll(".gamebox");
 var o=[];
+var nmax=2;
+var nmin=16384;
+
 for(var i=0;i<boxes.length;i++){
  if(boxes[i].innerHTML==""){o.push(i);}
+ else{ nmax=Math.max(nmax,parseInt(boxes[i].innerHTML));nmin=Math.min(nmin,parseInt(boxes[i].innerHTML));}
 }
 
+var qb=[];
+for(var i=nmin;i<nmax;i=i<<1){
+ qb.push(i);
+ if(qb.length>2){break;}
+}
+
+console.log(qb);
 for(var c=0;c<2;c++){
 if(o.length==0)break;
 var j=Math.round(Math.random()*(o.length-1));
 var i=o[j];
-boxes[i].innerHTML="2";
-//boxes[i].style.backgroundColor="gray";
+var num=qb[Math.round(Math.random()*(qb.length-1))];
+
+boxes[i].innerHTML=num.toString();
 updateColor(boxes[i]);
 o.splice(j,1);
 }
@@ -194,8 +206,11 @@ for(var c=0;c<2;c++){
 if(o.length==0)break;
 var j=Math.round(Math.random()*(o.length-1));
 var i=o[j];
-boxes[i].innerHTML="2";
-//boxes[i].style.backgroundColor="gray";
+
+var num=Math.round(Math.pow(2,Math.round(Math.random()*7)+1));
+boxes[i].innerHTML=num.toString();
+//boxes[i].innerHTML="2";
+
 updateColor(boxes[i]);
 o.splice(j,1);
 }
