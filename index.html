@@ -178,6 +178,7 @@ html, body {
 
 
 #idReset{
+ position: relative;
  float:left;
  padding:.25em;
  text-decoration: none;
@@ -185,6 +186,15 @@ html, body {
 }
 
 #idLevel{
+ position: relative;
+ float:right;
+ padding:.25em;
+ text-decoration: none;
+ color: lightgray;
+}
+
+#idScore{
+ position: relative;
  float:right;
  padding:.25em;
  text-decoration: none;
@@ -210,10 +220,11 @@ html, body {
   <div class="header">
    <a id="idReset" href="#">R</a>
    <a id="idLevel" href="#">L</a>
+   <a id="idScore" href="#">Score</a>
   </div>
   <div class="infobox">
 
-    <p> <strong>How to play</strong>: <br>Click boxes to join (double) numbers. <br>One click join same numbers of close neigbours. <br>Plus two random numbers are placed at empty positions.</p>
+    <p> <strong>How to play</strong>: <br>Click boxes to join numbers. <br>One click join same numbers of close neigbours recursively. <br>Plus two random numbers are placed at empty positions.</p>
     <p> <strong>Objective</strong>: <br>Make 16K box :-)  </p>
     <p> <strong>R</strong> (left top) <a href="javascript:levelUpdate( game.i );">reset level</a>.</p> 
     <p> <strong>L</strong> (right top) <a href="javascript:showLevels();window.scrollTo(0,0);">choose level</a>.</p>
@@ -224,7 +235,7 @@ html, body {
 
     <p>
 
-  <a href="https://twitter.com/share" class="twitter-share-button" data-text="Check out #fliplogic2 #html5 #puzzle #game" data-via="papercompute" data-url="http://papercompute.github.com/fl2" data-counturl="http://papercompute.github.io/fl2/">Tweet</a>
+  <a href="https://twitter.com/share" class="twitter-share-button" data-text="Join numbers in #fliplogic2 #html5 #puzzle #game" data-via="papercompute" data-url="http://papercompute.github.com/fl2" data-counturl="http://papercompute.github.io/fl2/">Tweet</a>
 
       <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 
