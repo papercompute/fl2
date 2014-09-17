@@ -27,7 +27,7 @@ if(o.length==0)break;
 var j=Math.round(Math.random()*(o.length-1));
 var i=o[j];
 var num=qb[Math.round(Math.random()*(qb.length-1))];
-
+console.log("num",num);
 boxes[i].innerHTML=num.toString();
 updateColor(boxes[i]);
 o.splice(j,1);

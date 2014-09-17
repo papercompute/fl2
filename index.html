@@ -195,8 +195,10 @@ html, body {
 
 #idFl2{
  float:left;
- padding:.25em;
+ padding:1em;
  color: red;
+ text-decoration: none;
+  font-size: 0.5em;
 }
 
 #idScore{
@@ -225,7 +227,7 @@ html, body {
   </div>
   <div class="header">
    <a id="idReset" href="#">R</a>
-   <a id="idFl2" href="http://papercompute.github.io/fliplogic">play: fl!</a>
+   <a id="idFl2" href="http://papercompute.github.io/fliplogic">play: fliplogic1</a>
    <a id="idLevel" href="#">L</a>
 <!--
    <a id="idScore" href="#">Score</a>
@@ -238,8 +240,13 @@ html, body {
     <p> <strong>R</strong> (left top) <a href="javascript:levelUpdate( game.i );">reset level</a>.</p> 
     <p> <strong>L</strong> (right top) <a href="javascript:showLevels();window.scrollTo(0,0);">choose level</a>.</p>
     <p> <strong>Tip</strong>: <br>Keep bigger numbers at center. Join small numbers.  </p>
+    <p> <strong>Other games</strong>:  </p>
     <p>
+<!--
     <a href="https://github.com/papercompute/fl2" style="font-size:2em;"> <strong><span style="color:blue;">f</span><span style="color:red;">l</span><span style="color:orange;">i</span><span style="color:gray;">p</span><span style="color:black;">l</span><span style="color:blue;">o</span><span style="color:green;">g</span><span style="color:magenta;">i</span><span style="color:blue;">c</span><span style="color:lightblue;">2</span></strong> </a>
+-->
+    <a href="http://papercompute.github.io/fliplogic" style="font-size:2em;"> <strong><span style="color:blue;">f</span><span style="color:red;">l</span><span style="color:orange;">i</span><span style="color:gray;">p</span><span style="color:black;">l</span><span style="color:blue;">o</span><span style="color:green;">g</span><span style="color:magenta;">i</span><span style="color:blue;">c</span></strong> </a>
+
     </p>
 
     <p>
@@ -407,24 +414,41 @@ var boxes=document.querySelectorAll(".gamebox");
 
 if (t.innerHTML!=""){
 
-var c=1;
-while(c>0){
-c=0;
+console.log(">>");
+var sm=[0];
+while(sm.length>0){
+sm=[];
 for (var i=0;i<boxes.length;i++){
  var x=boxes[i];
  if (x.innerHTML=="" || x==t){continue;}
  var xleft=parseInt(x.style.left.slice(0, -1)); var xtop=parseInt(x.style.top.slice(0, -1));
  if( Math.abs(xleft - eleft) <= 100 && Math.abs(xtop - etop) <= 100 ){
   if(x.innerHTML == t.innerHTML){
+/*
    v=parseInt(t.innerHTML)*2; 
    t.innerHTML=v;
    updateColor(t);
    x.innerHTML="";x.style.backgroundColor="lightgray";
    updateColor(x);
-   c++;
+*/
+   sm.push(x);
   } // if
  } // if
 } // for
+
+console.log("sm:",sm);
+if(sm.length>0){
+var i=Math.round(Math.random()*(sm.length-1));
+console.log("i",i,"of",sm.length);
+var x=sm[i];
+console.log("x",x.innerHTML);
+var v=parseInt(t.innerHTML)*2; 
+t.innerHTML=v;
+updateColor(t);
+x.innerHTML="";x.style.backgroundColor="lightgray";
+updateColor(x);
+}
+
 
 } // while
 
