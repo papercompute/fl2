@@ -343,12 +343,15 @@ for (var i=0;i<boxes.length;i++){
 return true;
 }
 
+var WinNum = 16384;
+
 function check2048()
 {
 var boxes=document.querySelectorAll(".gamebox");
 for (var i=0;i<boxes.length;i++){
  var x=boxes[i];
- if( x.innerHTML == "16384" ) {return true;}
+ //if( x.innerHTML >= "16384" ) {return true;}
+if( parseInt(x.innerHTML.toString()) >= WinNum ) {WinNum=WinNum*2;return true;}
 }
 return false;
 
@@ -473,6 +476,7 @@ var is=document.querySelector(".infoshow");
 var ish1=document.querySelector(".infoshow h1");
 var shareText=
 ish1.innerHTML='<p>Game complite <br> in '+(game.cc+1)+' clicks!</p>'+
+               '<p><a href="#" onclick="javascript:isHide();return false;">Continue</a></p>'+
                '<p><a href="#" onclick="javascript:levelUpdate( (game.i ));isHide();return false;">Restart</a></p>'+
 //               '<p><a href="#" onclick="javascript:levelUpdateHash( (game.i+1) % game.l.length );isHide();return false;">Next level</a></p>'+
 //               '<p><a href="#" onclick="javascript:showLevels();window.scrollTo(0,0);isHide();return false;">Choose level</a></p>'+
