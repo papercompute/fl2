@@ -34,7 +34,6 @@ boxes[i].innerHTML=num.toString();
 //console.log(cl);
 //boxes[i].setAttribute( "class", cl );
 boxes[i].className=boxes[i].className+" new-num";
-
 setTimeout(function(x) { return function() { x.className="gamebox gamebox-fx"; }; }(boxes[i]), 500);
 
 updateColor(boxes[i]);
@@ -136,6 +135,9 @@ var i=o[j];
 var num=qb[Math.round(Math.random()*(qb.length-1))];
 
 boxes[i].innerHTML=num.toString();
+boxes[i].className=boxes[i].className+" new-num";
+setTimeout(function(x) { return function() { x.className="gamebox gamebox-fx"; }; }(boxes[i]), 500);
+
 updateColor(boxes[i]);
 o.splice(j,1);
 }
@@ -248,6 +250,9 @@ var i=o[j];
 var num=qb[Math.round(Math.random()*(qb.length-1))];
 
 boxes[i].innerHTML=num.toString();
+boxes[i].className=boxes[i].className+" new-num";
+setTimeout(function(x) { return function() { x.className="gamebox gamebox-fx"; }; }(boxes[i]), 500);
+
 updateColor(boxes[i]);
 o.splice(j,1);
 }
