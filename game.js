@@ -29,6 +29,14 @@ var i=o[j];
 var num=qb[Math.round(Math.random()*(qb.length-1))];
 //console.log("num",num);
 boxes[i].innerHTML=num.toString();
+// !!! add some animation
+//var cl=boxes[i].getAttribute("class") + " new-num";
+//console.log(cl);
+//boxes[i].setAttribute( "class", cl );
+boxes[i].className=boxes[i].className+" new-num";
+
+setTimeout(function(x) { return function() { x.className="gamebox gamebox-fx"; }; }(boxes[i]), 500);
+
 updateColor(boxes[i]);
 o.splice(j,1);
 }
